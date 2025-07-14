@@ -7,3 +7,6 @@
 [submodule "orshin-sc/orshin-rpi_scp03"]
 	path = orshin-sc/orshin-rpi_scp03
 	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-rpi_scp03.git
+[submodule "inter-device-communication/bb-protocols"]
+	path = inter-device-communication/bb-protocols
+	url = https://github.com/sacca97/bb-protocols.git
