@@ -14,7 +14,7 @@
 #include <unistd.h>    // For getpid(), unlink()
 
 // Target server configuration - must match peripheral device
-#define L2CAP_SERVER_BLUETOOTH_ADDR "88:A2:9E:0B:0A:B7" // Replace with your server's Bluetooth address
+#define L2CAP_SERVER_BLUETOOTH_ADDR "AA:BB:CC:DD:EE:FF" // Replace with your peripheral's Bluetooth address
 #define L2CAP_SERVER_PORT_NUM 0x0235
 
 // Pre-shared cryptographic keys for secure handshake

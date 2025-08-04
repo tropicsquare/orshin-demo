@@ -1,11 +1,71 @@
 # BB Protocol AEAD Encryption Example
 
-This example demonstrates secure Bluetooth L2CAP communication using the BB protocol with AEAD encryption.
+This example demonstrates secure Bluetooth L2CAP communication using the BB protocol with AEAD encryption between two RPi devices.
 
-## Files
+AEAD is the *Authenticated encryption with associated data* allowing recipient to can check the integrity of both the associated data and the confidential information in a message.
+
+
+## AEAD Properties
+- **Confidentiality**: Plaintext is encrypted and unreadable without key
+- **Authenticity**: Any tampering with ciphertext is detected
+- **Associated Data**: Metadata is authenticated but not encrypted
+
+## Counter Management
+
+**Current Implementation**
+```c
+// Both sides use state.counter
+// Central: 0 (send), 1 (receive)
+// Peripheral: 0 (receive), 1 (send)
+```
+
+**Key Points**
+- **Nonce Uniqueness**: Each message must use a unique nonce with the same key
+- **Synchronization**: Both sides must use the same counter value for encrypt/decrypt
+- **Order**: Counter increments after each send operation
+- **Security**: Reusing nonce with same key breaks AEAD security
+
+
+## Security Note
+
+⚠️ **Warning**: This example uses the same counter space for both sides, which works for this simple back-and-forth pattern but could lead to nonce reuse in more complex scenarios.
+
+
+## 🚀 Get Started!
+
+### Prerequisites
+
+To enable the BlueBrothers protocol on RPi's, follow [BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR)](../../BB_BRINGUP.md) instructions.
+
+### Files
 
 - `central.c` - L2CAP client that initiates connection and sends encrypted messages
 - `peripheral.c` - L2CAP server that receives and responds with encrypted messages
+
+### Build and Run
+```bash
+# Terminal 1 (Peripheral)
+cmake .
+make peripheral
+sudo ./bin/peripheral
+
+# Terminal 2 (Central)
+cmake .
+make central
+sudo ./central <peripheral_bluetooth_address>
+```
+
+### Expected Output
+```
+# Peripheral side
+Handshake complete, key: [32 hex bytes]
+Received: Hello from Central!
+
+# Central side
+Handshake complete, key: [32 hex bytes]
+Received: Hello from Peripheral!
+```
+
 
 ## How AEAD Encryption Works
 
@@ -200,55 +260,3 @@ sequenceDiagram
 
 *Figure: Secure handshake and encrypted message exchange using AEAD and the shared session key.*
 
-## Counter Management
-
-### Current Implementation
-```c
-// Both sides use state.counter
-// Central: 0 (send), 1 (receive)
-// Peripheral: 0 (receive), 1 (send)
-```
-
-### Key Points
-- **Nonce Uniqueness**: Each message must use a unique nonce with the same key
-- **Synchronization**: Both sides must use the same counter value for encrypt/decrypt
-- **Order**: Counter increments after each send operation
-- **Security**: Reusing nonce with same key breaks AEAD security
-
-## Security Features
-
-### AEAD Properties
-- **Confidentiality**: Plaintext is encrypted and unreadable without key
-- **Authenticity**: Any tampering with ciphertext is detected
-- **Associated Data**: Metadata is authenticated but not encrypted
-
-
-## Usage
-
-### Build and Run
-```bash
-# Terminal 1 (Peripheral)
-cmake .
-make peripheral
-sudo ./bin/peripheral
-
-# Terminal 2 (Central)
-cmake .
-make central
-sudo ./central <peripheral_bluetooth_address>
-```
-
-### Expected Output
-```
-# Peripheral side
-Handshake complete, key: [32 hex bytes]
-Received: Hello from Central!
-
-# Central side  
-Handshake complete, key: [32 hex bytes]
-Received: Hello from Peripheral!
-```
-
-## Important Notes
-
-⚠️ **Security Warning**: This example uses the same counter space for both sides, which works for this simple back-and-forth pattern but could lead to nonce reuse in more complex scenarios.

@@ -11,6 +11,7 @@
 #include <bluetooth/hci_lib.h>
 // #include "bluetooth/hci_lib.h"
 
+#define L2CAP_SERVER_BLUETOOTH_ADDR "AA:BB:CC:DD:EE:FF" // Replace with your peripheral's Bluetooth address
 #define L2CAP_SERVER_PORT_NUM 0x0235
 
 static uint8_t private_key[32] = {
