@@ -1,0 +1,9 @@
+[submodule "orshin-sc-fpga/core-v-mcu"]
+	path = orshin-sc-fpga/core-v-mcu
+	url = https://github.com/openhwgroup/core-v-mcu.git
+[submodule "orshin-sc-fpga/orshin-corev-secure-element"]
+	path = orshin-sc-fpga/orshin-corev-secure-element
+	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-corev-secure-element.git
+[submodule "orshin-sc/orshin-rpi_scp03"]
+	path = orshin-sc/orshin-rpi_scp03
+	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-rpi_scp03.git

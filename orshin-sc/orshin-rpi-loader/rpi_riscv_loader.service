@@ -1,0 +1,12 @@
+[Unit]
+Description=load ORSHIN demo from RPI into the RISC-V instance
+
+[Service]
+Type=simple
+ExecStart=/opt/orshin-rpi-loader/rpi_riscv_loader.sh
+
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
