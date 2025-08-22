@@ -20,7 +20,7 @@ This introductory readme descibes how to enable TROPIC01 with the ORSHIN demo.
 
 4. **For Raspberry Pi Shield:**
 - Enable SPI: `sudo raspi-config` → Interfaces → SPI
-- Install WiringPi: `sudo apt install wiringpi`
+- Install WiringPi: follow build and install instructions for [WiringPi](https://github.com/WiringPi/WiringPi.git)
 - Connect shield according to pinout diagram
 
 5. **libtropic-util** (Optional - for real hardware)

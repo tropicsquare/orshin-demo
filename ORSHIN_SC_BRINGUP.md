@@ -19,7 +19,7 @@ The setup was tested with the [Raspberry Pi OS 12 (bookworm)](https://www.raspbe
 ```shell
 cd ~/Downloads
 wget http://ftp.debian.org/debian/pool/main/o/openssl/libssl1.1_1.1.1w-0+deb11u1_arm64.deb
-wget wget http://ftp.debian.org/debian/pool/main/o/openssl/libssl-dev_1.1.1w-0+deb11u1_arm64.deb
+wget http://ftp.debian.org/debian/pool/main/o/openssl/libssl-dev_1.1.1w-0+deb11u1_arm64.deb
 
 sudo dpkg -i ./libssl1.1_1.1.1w-0+deb11u1_arm64.deb libssl-dev_1.1.1w-0+deb11u1_arm64.deb
 ```
@@ -30,26 +30,37 @@ sudo apt-get install openocd
 ```
 
 ## Flashing Bitstream and Firmware to FPGA
-You can load CoreV onto the Nexys A7 either temporarily or permanently. 
-  
-Choose the method that fits your needs in the sections below.
+If you plan to make design modifications in the future, ensure Vivado is installed on a separate workstation (see instructions below).
+
+If only bitsream upload is needed, you can use the [Vivado Lab Edition](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html). Follow the package’s official installation guide, and install the software package on your workstation (not RPi).
+
+You can load CoreV onto the Nexys A7 either temporarily or permanently: choose the method that fits your needs in the sections below.
 
 ### Temporary FPGA Configuration
 
 In this case, the bitstream is loaded into FPGA but cleared after reset.
 
-Go to the cloned [core-v-mcu](https://github.com/openhwgroup/core-v-mcu) repository folder and run.
+With Vivado installed, go to the cloned [core-v-mcu](https://github.com/openhwgroup/core-v-mcu) repository folder and run.
 
 ```shell
 make downloadn NEXYSA7_BITMAP=emulation/quickstart/core_v_mcu_nexys.bit
 ```
+
+**Note:** Vivado must be in your PATH.
+
+You can also use [Vivado Lab Edition](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html) GUI. To program FPGA temporarily via USB do this:
+```
+Open Hardware Manager > Open Target > Auto Connect > Program device
+```
+and select the [bitstream](https://github.com/openhwgroup/core-v-mcu/blob/master/emulation/quickstart/core_v_mcu_nexys.bit) used with a `make` command.
+
+**Note:** If your localhost Xiling server can't find a target, running `vivado_lab` with `sudo` can help.
 
 ### Permanent FPGA Configuration
 
 In this case, the bitstream is stored in QSPI and reloaded on every reset.
 
 For permanent flashing to QSPI:
-- Ensure Vivado is installed on a separate workstation (see instructions below).
 - Set JP1 and JP2 switches as described in the [Nexys A7 reference manual](https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual) (Chapter 2: FPGA Configuration).
 - In Vivado, generate the .bin memory configuration file:
 ```
@@ -76,9 +87,10 @@ In the main Vivado window, click:
 ```
 Tools > Add Configuration Memory Device > xc7a100t_0
 ```
-- In the Program Flash dialog, search for s25fl128l-spi-x1_x2_x4 and click OK.
+- In the Program Flash dialog, search for s25fl128sxxxxxx0-spi-x1_x2_x4 and click OK.
 - Set the path to the .bin configuration file you generated.
 - Ensure Erase, Program, and Verify checkboxes are selected.
+
 Your QSPI programming is now complete!
 
 ## Automatic RISC-V Firmware Upload
@@ -104,12 +116,12 @@ The install script creates the **/opt/rpi-rpi-loader** path, where all service d
 The development environment must be prepared on a separate workstation (a more powerful workstation is needed; RPi cannot be used due to a lack of system resources) if you
 need to modify the demo FW (or FPGA configuration). You can skip this part if you only need to get the demo running.
 
-The following tools were used for the current demo development:
+The following tools were used on RHEL 8.10 for the current demo development:
 
 - [corev-openhw-gcc-rocky8-20230622](https://buildbot.embecosm.com/job/corev-gcc-rocky8/lastSuccessfulBuild/artifact/build-sources.txt)
 - [openocd-0.12.0](https://deac-fra.dl.sourceforge.net/project/openocd/openocd/0.12.0/openocd-0.12.0.zip?viasf=1)
 - [Eclipse 2025-06 (4.36.0)](https://download.eclipse.org/eclipse/downloads/drops4/R-4.36-202505281830/)
-- [Vivado v2023.2](https://www.xilinx.com/support/download.html)
+- [Vivado v2023.2](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html)
 
 Follow each package’s official installation guide, and install all software packages on your workstation.
 

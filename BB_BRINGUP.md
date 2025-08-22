@@ -8,10 +8,16 @@ BB-portable implements the BlueBrothers protocols over L2CAP for Bluetooth Class
 
 ## Prerequisites
 
-- Linux with Bluetooth Classic (BR/EDR) support - the primary target is the Raspberry Pi 4B with Debian Bookworm
+- Linux with Bluetooth Classic (BR/EDR) support - the primary target is the Raspberry Pi 4B with Raspberry Pi OS (Debian 12 Bookworm)
 - Make, CMake, GCC
 - Bluetooth utilities (bluetoothctl)
 - Two Bluetooth-enabled devices
+
+On the Raspberry Pi OS:
+
+```bash
+sudo apt install libbluetooth-dev cmake make gcc
+```
 
 
 ## Building
@@ -27,7 +33,8 @@ make peripheral
 
 ### Phase 1: Device Pairing (REQUIRED)
 
-⚠️ **IMPORTANT**: The original README omitted the crucial pairing step. You **must** pair and trust the devices before running the protocol.
+>⚠️ **IMPORTANT**: <br>The original README omitted the crucial pairing step. You **must** pair and trust the devices before running the protocol.
+<br>
 
 #### On the Peripheral Device:
 
@@ -44,11 +51,13 @@ make peripheral
    [bluetooth]# pairable on
    ```
 
+   **Note:** The `discoverable on` mode has a timeout. Running the command again before the central device initiates pairing will not cause any issues. 
+
 3. **Check your device address:**
    ```
    [bluetooth]# show
    ```
-   Note down the Controller address (e.g., `AA:BB:CC:DD:EE:FF`)
+   Note down the Controller address (e.g., `AA:BB:CC:DD:EE:FF`), as it's easier than searching for it among all scanned devices.
 
 4. **Wait for pairing request from central device** - you'll see:
    ```
@@ -84,6 +93,11 @@ make peripheral
 
 3. **Pair with the peripheral device:**
    ```
+   [bluetooth]# scan on
+   ```
+   Wait for the peripheral device to be scanned.
+   ```
+   [bluetooth]# scan off
    [bluetooth]# pair AA:BB:CC:DD:EE:FF
    ```
    Replace `AA:BB:CC:DD:EE:FF` with the actual peripheral device address.

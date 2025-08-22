@@ -13,11 +13,11 @@ This project demonstrates secure, encrypted inter-device communication using the
 <table>
   <tr>
     <td align="center">
-      <img src="img/central.png" alt="Central Device UI" width="300"/><br/>
+      <img src="../../img/central.png" alt="Central Device UI" width="300"/><br/>
       <sub>Central device interface (random number provider)</sub>
     </td>
     <td align="center">
-      <img src="img/peripheral.png" alt="Peripheral Device UI" width="300"/><br/>
+      <img src="../../img/peripheral.png" alt="Peripheral Device UI" width="300"/><br/>
       <sub>Peripheral device interface (Tetris game UI)</sub>
     </td>
   </tr>
