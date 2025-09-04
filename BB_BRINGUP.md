@@ -215,4 +215,3 @@ sequenceDiagram
    ```bash
    bluetoothctl info <device-address>
    ```
-

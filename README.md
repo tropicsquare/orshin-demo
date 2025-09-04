@@ -1,9 +1,9 @@
-# ORSHIN Demonstrator Platform (WP3, WP4, WP5)
+# ORSHIN Demonstrator Platform
 
 This repository contains the ORSHIN demonstrator platform integrating following ORSHIN deliverables and related assets:
   - [BlueBrothers-protocols](https://github.com/sacca97/bb-protocols)
-  - [New Secure Channel Protocol 03](https://github.com/securitypattern/orshin-STM32-client-scp03-nscp)
-  - [AttackDefense Framework (ADF)](https://github.com/tropicsquare/orshin-adf)
+  - [New Secure Channel Protocol 03](https://doi.org/10.23919/DATE64628.2025.10992943)
+  - [AttackDefense Framework (ADF)](https://doi.org/10.1145/3698396)
   - [TROPIC01 Secure Element](https://github.com/tropicsquare/tropic01)
 
 ## Architecture
@@ -30,7 +30,7 @@ Wireless communication between the RPi devices is secured by the **BlueBrothers-
 
 Two secure elements can be used interchangeably on the second RPi:
 - the TROPIC01 physical chip (as an RPi extension shield or a USB plug)
-- the RISC-V-emulated Secure Element implementing the **New Secure Channel Protocol 03** over SPI
+- the RISC-V-emulated Secure Element implementing the **New Secure Channel Protocol 03** over I2C
 
 ## Repository Structure
 
@@ -43,6 +43,8 @@ Two secure elements can be used interchangeably on the second RPi:
 
 
 ## Get Started!
+
+**Note:** Not all submodules are public yet. The repository opening is currently a work in progress.
 
 ```bash
 git clone --recurse-submodules https://github.com/tropicsquare/orshin-demo

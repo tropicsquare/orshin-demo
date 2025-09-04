@@ -16,6 +16,3 @@
 [submodule "libtropic-util/libtropic"]
 	path = tropic01-se/libtropic-util/libtropic
 	url = https://github.com/tropicsquare/libtropic
-[submodule "bb-protocols"]
-	path = bb-protocols
-	url = git@github.com:sacca97/bb-protocols.git

@@ -24,7 +24,7 @@ For this purpose, our [extended ADF](https://github.com/tropicsquare/orshin-adf/
 The extended ADF approach enables simpler device modeling by following [MITRE EMB3D](https://emb3d.mitre.org) device properties while allowing extension by ADF, providing a more detailed attack surface view as a result.
 
 By combining ADF and MITRE EMB3D in this way, it is possible to achieve more efficient and detailed modeling — particularly in areas where [MITRE EMB3D](https://emb3d.mitre.org) lacks in-depth coverage.
-For constrained devices, we defined the AD databases based on ORSHIN expert catalogs available as a [generic catalog](https://github.com/tropicsquare/orshin-adf/catalog-mitre).
+For constrained devices, we defined the AD databases based on ORSHIN expert catalogs available as a [generic catalog](https://github.com/tropicsquare/orshin-adf/tree/main/catalog-mitre).
 
 The source model files used to generate the [visualization](https://tropicsquare.github.io/orshin-adf/):
 
