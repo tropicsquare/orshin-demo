@@ -48,5 +48,5 @@ Note that both approaches use the same underlying database and thus can be combi
 ## 4. Defense Strategy
 
 A detailed defense strategy is not relevant for the demonstrator; however:
-  - [BlueBrothers-protocols](https://github.com/sacca97/bb-protocols) addresses the vast majority of the enumerated Bluetooth protocol threats
+  - [BB-protocols](https://github.com/sacca97/bb-sec-protocols) addresses the vast majority of the enumerated Bluetooth protocol threats
   - [New Secure Channel Protocol 03](https://github.com/securitypattern/orshin-STM32-client-scp03-nscp) addresses the vast majority of the enumerated SCP03 protocol threats

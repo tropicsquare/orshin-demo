@@ -1,6 +1,6 @@
 # TROPIC01 Secure Bluetooth Communication
 
-A lightweight, secure implementation for Bluetooth communication with the TROPIC01 secure element. This project demonstrates how to securely interface with TROPIC01 secure elements over Bluetooth Physical Channel using encrypted commands and responses, built on the **bb-protocol (BlueBrothers)** framework.
+A lightweight, secure implementation for Bluetooth communication with the TROPIC01 secure element. This project demonstrates how to securely interface with TROPIC01 secure elements over Bluetooth Physical Channel using encrypted commands and responses, built on the **BB-protocol** framework.
 
 ## 🏗️ Architecture
 
@@ -19,11 +19,11 @@ flowchart LR
 - **Peripheral (peripheral.c)**: Command-line console, acts as a Bluetooth L2CAP server on hci0, enables scan mode for discoverability, and sends encrypted commands.
 - **Central (central.c)**: Bluetooth L2CAP client on hci0, connects to the peripheral, performs all TROPIC01 secure element operations, and sends encrypted responses.
 - **TROPIC01**: Secure element providing cryptographic operations, accessed only by the central.
-- **Protocol**: Secure communication using **bb-protocol (BlueBrothers)** handshake + AEAD encryption, with pre-shared keys for authentication.
+- **Protocol**: Secure communication using the **BB-protocol** handshake + AEAD encryption, with pre-shared keys for authentication.
 
 ## 🔒 Security Features
 
-- **bb-protocol (BlueBrothers) Handshake**: Mutual authentication between devices using pre-shared public/private keys
+- **BB-protocol Handshake**: Mutual authentication between devices using pre-shared public/private keys
 - **AEAD Encryption**: Authenticated encryption for all messages
 - **Counter-based Nonces**: Prevents replay attacks
 - **Hardware-backed Operations**: All cryptographic operations use TROPIC01 secure element (on central)
@@ -39,7 +39,7 @@ flowchart LR
 
 ### Prerequisites
 
-To enable the BlueBrothers protocol on RPi, follow [BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR)](../BB_BRINGUP.md) instructions.
+To enable the BB-protocol on RPi, follow [BB-protocols over L2CAP for Bluetooth Classic (BR/EDR)](../BB_BRINGUP.md) instructions.
 To enable TROPIC01 secure element on the peripheral device, follow [TROPIC01 Secure Element Enablement](../TROPIC01_BRINGUP.md) instructions.
 
 ### Build and Run

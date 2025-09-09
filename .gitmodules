@@ -7,12 +7,12 @@
 [submodule "orshin-sc/orshin-rpi_scp03"]
 	path = orshin-sc/orshin-rpi_scp03
 	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-rpi_scp03.git
-[submodule "bb-protocols"]
-	path = bb-protocols
-	url = https://github.com/sacca97/bb-protocols.git
 [submodule "libtropic-util"]
 	path = tropic01-se/libtropic-util
 	url = https://github.com/tropicsquare/libtropic-util.git
 [submodule "libtropic-util/libtropic"]
 	path = tropic01-se/libtropic-util/libtropic
 	url = https://github.com/tropicsquare/libtropic
+[submodule "bb-protocols"]
+	path = bb-protocols
+	url = https://github.com/sacca97/bb-sec-protocols.git

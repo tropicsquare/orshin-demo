@@ -1,4 +1,4 @@
-# BB Protocol AEAD Encryption Example
+# BB-Protocol AEAD Encryption Example
 
 This example demonstrates secure Bluetooth L2CAP communication using the BB protocol with AEAD encryption between two RPi devices.
 
@@ -35,7 +35,7 @@ AEAD is the *Authenticated encryption with associated data* allowing recipient t
 
 ### Prerequisites
 
-To enable the BlueBrothers protocol on RPi's, follow [BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR)](../../BB_BRINGUP.md) instructions.
+To enable the BB-protocol on RPi's, follow [BB-protocols over L2CAP for Bluetooth Classic (BR/EDR)](../../BB_BRINGUP.md) instructions.
 
 ### Files
 

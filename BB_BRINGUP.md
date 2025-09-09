@@ -1,10 +1,10 @@
-# BlueBrothers Protocols - Complete Workflow Guide
+# BB-Protocols - Complete Workflow Guide
 
 This document provides a workflow for running the bb-protocols on RPi/Linux, including the pairing process that was missing in the original [README](https://github.com/sacca97/bb-protocols/tree/main/bb-portable).
 
 ## Overview
 
-BB-portable implements the BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR) in the `central.c` and `peripheral.c` files. It leverages the bb-lib, a C library that implements the underlying cryptographic primitives and protocol logic.
+BB-portable implements the BB-protocols over L2CAP for Bluetooth Classic (BR/EDR) in the `central.c` and `peripheral.c` files. It leverages the bb-lib, a C library that implements the underlying cryptographic primitives and protocol logic.
 
 ## Prerequisites
 
@@ -192,7 +192,7 @@ sequenceDiagram
     Peripheral->>Central: Encrypted response ("Hello from Peripheral!")
 ```
 
-*Figure: Secure handshake and encrypted message exchange using the BlueBrothers protocol.*
+*Figure: Secure handshake and encrypted message exchange using the BB-protocol.*
 
 
 ## Troubleshooting

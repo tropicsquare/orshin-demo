@@ -1,7 +1,7 @@
 # ORSHIN Demonstrator Platform
 
 This repository contains the ORSHIN demonstrator platform integrating following ORSHIN deliverables and related assets:
-  - [BlueBrothers-protocols](https://github.com/sacca97/bb-protocols)
+  - [BB-protocols](https://github.com/sacca97/bb-sec-protocols)
   - [New Secure Channel Protocol 03](https://doi.org/10.23919/DATE64628.2025.10992943)
   - [AttackDefense Framework (ADF)](https://doi.org/10.1145/3698396)
   - [TROPIC01 Secure Element](https://github.com/tropicsquare/tropic01)
@@ -26,7 +26,7 @@ flowchart LR
 
 The Demonstrator platform consists of two RPi devices: the first RPi acts as a terminal, and the second RPi acts as a remote host with a connected secure element that provides remote secure services to the terminal RPi.
 
-Wireless communication between the RPi devices is secured by the **BlueBrothers-protocol** over BLE.
+Wireless communication between the RPi devices is secured by the **BB-protocol** over BLE.
 
 Two secure elements can be used interchangeably on the second RPi:
 - the TROPIC01 physical chip (as an RPi extension shield or a USB plug)
@@ -54,7 +54,7 @@ git clone --recurse-submodules https://github.com/tropicsquare/orshin-demo
 
 - Follow the [Bill of Materials](BOM.md) to acquire hardware needed for the complete demo setup.
 - Follow the [Interconnect guide](WIRING.md) to connect particular boards together.
-- Follow the [BlueBrothers guide](BB_BRINGUP.md) to enable secure communication between two RPis.
+- Follow the [BB-protocols guide](BB_BRINGUP.md) to enable secure communication between two RPis.
 - Follow:
   * [TROPIC01 guide](TROPIC01_BRINGUP.md) to configure both RPis with the TROPIC01 physical Secure Element,
   * or [ORSHIN Secure Channel guide](ORSHIN_SC_BRINGUP.md) to configure both RPis with the RISC-V-emulated Secure Element.
@@ -64,7 +64,7 @@ git clone --recurse-submodules https://github.com/tropicsquare/orshin-demo
 
 Several software examples are available for the demonstrator platform, and several software components need to be orchestrated to bring-up the platform.
 
-To enable the BlueBrothers protocol serving for secure communication, follow [BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR)](BB_BRINGUP.md) instructions.
+To enable the BB-protocol serving for secure communication, follow [BB-protocols over L2CAP for Bluetooth Classic (BR/EDR)](BB_BRINGUP.md) instructions.
 To enable TROPIC01 secure element, providing cryptografic functions in certain demo configurations, follow [TROPIC01 Secure Element Enablement](TROPIC01_BRINGUP.md) instructions.
 
 Following examples are available for the ORSHIN demo:

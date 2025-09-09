@@ -1,13 +1,13 @@
 # Tetris Demo with TP01/CORE-V
 
-This project demonstrates secure, encrypted inter-device communication using the BlueBrothers protocol over Bluetooth Classic (BR/EDR), featuring a Tetris game. The demo is based on [Tetris200lines by @najibghadri](https://github.com/najibghadri/Tetris200lines/tree/master) and extends it to run securely between two devices using the BlueBrothers protocol for encrypted communication.
+This project demonstrates secure, encrypted inter-device communication using the BB-protocol over Bluetooth Classic (BR/EDR), featuring a Tetris game. The demo is based on [Tetris200lines by @najibghadri](https://github.com/najibghadri/Tetris200lines/tree/master) and extends it to run securely between two devices using the BB-protocol for encrypted communication.
 
 
 ## The Game Flow
 
 - Whenever the Tetris game on the peripheral needs a new piece, it requests **two random bytes** from the central device.
 - The central device generates these two bytes using the TROPIC01 hardware random number generator or the RISC-V emulated Secure Element.
-- The random bytes are sent back to the peripheral, **encrypted and authenticated** using the BlueBrothers protocol.
+- The random bytes are sent back to the peripheral, **encrypted and authenticated** using the BB-protocol.
 - The peripheral uses these bytes to determine the next Tetris piece, ensuring that the random number source is both secure and verifiable.
 
 <table>
@@ -27,7 +27,7 @@ This project demonstrates secure, encrypted inter-device communication using the
 ## How It Works
 
 
-The Tetris TP01/CORE-V demonstrator showcases secure Bluetooth communication using the BlueBrothers protocol. It consists of two main components:
+The Tetris TP01/CORE-V demonstrator showcases secure Bluetooth communication using the BB-protocol. It consists of two main components:
 
 - **Peripheral Device**: Runs the Tetris game with ncurses interface, acts as a Bluetooth server
 - **Central Device**: Acts as a Bluetooth client, can control the game and provide random number generation
@@ -39,7 +39,7 @@ The system supports two random number generation modes:
 Operation:
 - The **peripheral** runs the Tetris game and requests random numbers from the central device to generate new Tetris pieces.
 - The **central** device acts as a secure random number provider (and can be extended to provide other secure hardware-backed operations).
-- All requests and responses are sent as encrypted messages using the BlueBrothers protocol. The message format is defined in `tropic_simple.h`.
+- All requests and responses are sent as encrypted messages using the BB-protocol. The message format is defined in `tropic_simple.h`.
 - The communication flow is:
   1. Devices perform a secure handshake to establish a session key.
   2. The peripheral requests random numbers from the central device as needed for the Tetris game.
@@ -51,7 +51,7 @@ sequenceDiagram
     participant Peripheral
     participant Central
 
-    Note over Peripheral,Central: Secure handshake using BlueBrothers protocol
+    Note over Peripheral,Central: Secure handshake using BB-protocol
     Peripheral->>Central: Request 2 random bytes (encrypted)
     Central->>Central: Generate 2 random bytes (TROPIC01/RISC-V RNG)
     Central-->>Peripheral: Send 2 random bytes (encrypted)
@@ -64,13 +64,13 @@ sequenceDiagram
 ### Current Implementation
 
 - Uses pre-shared keys for demonstration
-- Implements BlueBrothers protocol for secure communication
+- Implements BB-protocol for secure communication
 - Supports hardware-based random number generation
 
 ### Security Note
 
 ⚠️ **Warning**: This demo is for educational and demonstration purposes only. Keys are hardcoded and should not be used in production.
-- The communication channel is fully encrypted and authenticated using the BlueBrothers protocol.
+- The communication channel is fully encrypted and authenticated using the BB-protocol.
 
 ### Production Recommendations
 
@@ -110,7 +110,7 @@ sudo apt install build-essential cmake pkg-config libbluetooth-dev libncurses5-d
 
 **BB-portable:**
 
-BB-portable implements the BlueBrothers protocols over L2CAP for Bluetooth Classic (BR/EDR) in the `central.c` and `peripheral.c` files.
+BB-portable implements the BB-protocols over L2CAP for Bluetooth Classic (BR/EDR) in the `central.c` and `peripheral.c` files.
 It leverages the bb-lib, a C library that implements the underlying cryptographic primitives and protocol logic.
 
 
