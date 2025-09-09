@@ -96,5 +96,10 @@ It is common wisdom that cyber security is only as strong as the weakest link in
 
 [TROPIC01](https://github.com/tropicsquare/tropic01)  is the first product in its lineup, serving as a cryptographic coprocessor that establishes a hardware root of trust, ensuring the protection of the system’s most sensitive assets while offloading cryptographic functions from the host MCU.
 
+# License
+See the [LICENSE.md](LICENSE.md) file in the root of this repository or consult license information at Tropic Square website.
+
+Examples in this repository are based on BB-protocols distributed under the terms of the MIT License. See the [LICENSE_BB](LICENSE_BB) file.
+
 # Acknowledgement
 Funded by the European Union under grant agreement no. 101070008. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union. Neither the European Union nor the granting authority can be held responsible for them.
