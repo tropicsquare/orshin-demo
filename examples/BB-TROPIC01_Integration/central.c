@@ -8,13 +8,13 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 #include "tropic_simple.h"
+#include <getopt.h>
 
 #include <sys/wait.h>  // For WEXITSTATUS
 #include <time.h>      // For time()
 #include <unistd.h>    // For getpid(), unlink()
 
 // Target server configuration - must match peripheral device
-#define L2CAP_SERVER_BLUETOOTH_ADDR "AA:BB:CC:DD:EE:FF" // Replace with your peripheral's Bluetooth address
 #define L2CAP_SERVER_PORT_NUM 0x0235
 
 // Pre-shared cryptographic keys for secure handshake
@@ -478,68 +478,113 @@ void process_commands(int socket, bbstate* state) {
  * 3. Processes encrypted commands and executes TROPIC01 hardware operations
  * 4. Sends encrypted responses back to peripheral
  */
-int
-main(int argc, char** argv)
+int main(int argc, char **argv)
 {
+    struct sockaddr_l2 loc_addr = {0};
+    struct sockaddr_l2 rem_addr = {0};
+    int sock, status;
     uint8_t buffer[128];
-    struct sockaddr_l2 addr = {0};
-    int sock;
-    const char* sample_text = "L2CAP Simple";
-    bdaddr_t local_bdaddr = {0}; // Local Bluetooth address storage
-    int dev_id = 0;              // Use hci0 device (first Bluetooth adapter)
+    char dest_addr_str[18] = {0};
+    int dev_id = -1;
+    int c;
 
-    printf("Start Bluetooth L2CAP client, server addr %s\n",
-           L2CAP_SERVER_BLUETOOTH_ADDR);
+    static struct option long_options[] = {
+        {"dev", required_argument, 0, 'd'},
+        {0, 0, 0, 0}};
 
-    // Get local Bluetooth address from hci0 adapter
-    int hci_sock = hci_open_dev(dev_id);
-    if (hci_sock < 0) {
-        perror("failed to open HCI device");
-        exit(1);
+    while (1)
+    {
+        int option_index = 0;
+        c = getopt_long(argc, argv, "d:", long_options, &option_index);
+
+        if (c == -1)
+            break;
+
+        switch (c)
+        {
+        case 'd':
+            dev_id = atoi(optarg);
+            break;
+        case '?':
+            break;
+        default:
+            if (optind <= argc)
+            {
+                strncpy(dest_addr_str, argv[optind - 1], 17);
+                dest_addr_str[17] = '\0';
+            }
+        }
     }
 
-    if (hci_read_bd_addr(hci_sock, &local_bdaddr, 0) < 0) {
-        perror("failed to read local Bluetooth address");
-        close(hci_sock);
-        exit(1);
+    if (dest_addr_str[0] == 0)
+    {
+        if (optind < argc)
+        {
+            strncpy(dest_addr_str, argv[optind], 17);
+            dest_addr_str[17] = '\0';
+        }
+        else
+        {
+            fprintf(stderr, "Usage: %s <Bluetooth Address> [--dev <device>]\n", argv[0]);
+            exit(1);
+        }
     }
-    close(hci_sock);
 
-    char local_addr_str[18];
-    ba2str(&local_bdaddr, local_addr_str);
-    printf("Using local HCI device: hci%d (%s)\n", dev_id, local_addr_str);
+    printf("Starting Bluetooth L2CAP client...\n");
 
-    // Create L2CAP socket for client connection
+    /* allocate a socket */
     sock = socket(AF_BLUETOOTH, SOCK_SEQPACKET, BTPROTO_L2CAP);
-    if (sock < 0) {
+    if (sock < 0)
+    {
         perror("failed to create socket");
         exit(1);
     }
 
-    // Bind socket to local address (hci0)
-    struct sockaddr_l2 local_addr = {0};
-    local_addr.l2_family = AF_BLUETOOTH;
-    bacpy(&local_addr.l2_bdaddr, &local_bdaddr); // Set to hci0's address
+    /* bind socket to a specific local adapter */
+    if (dev_id >= 0)
+    {
+        loc_addr.l2_family = AF_BLUETOOTH;
+        hci_devba(dev_id, &loc_addr.l2_bdaddr);
 
-    if (bind(sock, (struct sockaddr*)&local_addr, sizeof(local_addr)) < 0) {
-        perror("failed to bind local socket");
+        if (bind(sock, (struct sockaddr *)&loc_addr, sizeof(loc_addr)) < 0)
+        {
+            perror("failed to bind socket");
+            close(sock);
+            exit(1);
+        }
+    }
+
+    /* set the connection parameters (who to connect to) */
+    rem_addr.l2_family = AF_BLUETOOTH;
+    rem_addr.l2_psm = htobs(L2CAP_SERVER_PORT_NUM);
+    if (str2ba(dest_addr_str, &rem_addr.l2_bdaddr) < 0)
+    {
+        perror("str2ba failed to parse address");
+        exit(1);
+    }
+
+    int security_level = BT_SECURITY_LOW;
+    int err = setsockopt(sock, SOL_BLUETOOTH, BT_SECURITY, &security_level, sizeof(security_level));
+    if (err != 0)
+    {
+        perror("setsockopt(BT_SECURITY) failed");
+    }
+
+    printf("Connecting to %s on PSM 0x%04X...\n", dest_addr_str, L2CAP_SERVER_PORT_NUM);
+
+    /* connect to server */
+    // The connect() call handles everything: creating the ACL link
+    // and establishing the L2CAP channel. No hci_* calls or client-side
+    // bind() are necessary.
+    status = connect(sock, (struct sockaddr *)&rem_addr, sizeof(rem_addr));
+    if (status < 0)
+    {
+        perror("failed to connect. (Is server running and discoverable? Are you using sudo?)");
         close(sock);
         exit(1);
     }
 
-    // Configure connection parameters for target server
-    addr.l2_family = AF_BLUETOOTH;
-    addr.l2_psm = htobs(L2CAP_SERVER_PORT_NUM); // Server's port number
-    str2ba(L2CAP_SERVER_BLUETOOTH_ADDR, &addr.l2_bdaddr); // Server's Bluetooth address
-
-    // Connect to peripheral device
-    if (connect(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-        perror("failed to connect");
-        close(sock);
-        exit(1);
-    }
-
-    printf("connected...\n");
+    printf("Connected successfully!\n");
 
     // Initialize secure session state as central device
     // This prepares the cryptographic state for the handshake

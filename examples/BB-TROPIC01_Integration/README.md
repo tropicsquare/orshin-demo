@@ -51,13 +51,6 @@ hcitool dev
 ```
 This will display all available Bluetooth devices and their addresses in the format `AA:BB:CC:DD:EE:FF`.
 
-**Update the server address in `central.c`:**
-
-```c
-#define L2CAP_SERVER_BLUETOOTH_ADDR "AA:BB:CC:DD:EE:FF"  // Replace with your peripheral's address
-#define L2CAP_SERVER_PORT_NUM 0x0235
-```
-
 1. **Compile the project**
    ```bash
    cmake .

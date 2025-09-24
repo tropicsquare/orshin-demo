@@ -4,9 +4,10 @@ This introductory readme descibes how to enable TROPIC01 with the ORSHIN demo.
 
 ## Prerequisites
 
-1. **Bluetooth Development Libraries**
+1. **Development Libraries**
    ```bash
    sudo apt-get install libbluetooth-dev
+   sudo apt-get install libncurses5-dev
    ```
 
 2. **TROPIC01 Hardware**

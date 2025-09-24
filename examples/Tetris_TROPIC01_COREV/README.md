@@ -1,4 +1,4 @@
-# Tetris Demo with TP01/CORE-V
+# Tetris Demo with TROPIC01/CORE-V
 
 This project demonstrates secure, encrypted inter-device communication using the BB-protocol over Bluetooth Classic (BR/EDR), featuring a Tetris game. The demo is based on [Tetris200lines by @najibghadri](https://github.com/najibghadri/Tetris200lines/tree/master) and extends it to run securely between two devices using the BB-protocol for encrypted communication.
 
@@ -27,7 +27,7 @@ This project demonstrates secure, encrypted inter-device communication using the
 ## How It Works
 
 
-The Tetris TP01/CORE-V demonstrator showcases secure Bluetooth communication using the BB-protocol. It consists of two main components:
+The Tetris TROPIC01/CORE-V demonstrator showcases secure Bluetooth communication using the BB-protocol. It consists of two main components:
 
 - **Peripheral Device**: Runs the Tetris game with ncurses interface, acts as a Bluetooth server
 - **Central Device**: Acts as a Bluetooth client, can control the game and provide random number generation
@@ -160,25 +160,16 @@ This file is essential for CORE-V random number generation and secure element co
 
 ### Configuration
 
-#### Bluetooth Address Configuration
+#### Bluetooth Address
 
-**⚠️ IMPORTANT**: You must configure the Bluetooth addresses before running the application. The demonstrator works by simply compiling executing the two sources in two distinct devices. It currently requires hardcoding the MAC address.
+**⚠️ IMPORTANT**: You must specify the Bluetooth addresses while running the application. The demonstrator works by simply running two sources in two distinct devices.
 
-1. **Find your Bluetooth addresses**:
+**Find your Bluetooth addresses**:
    ```bash
    hciconfig
    # or
    bluetoothctl show
    ```
-
-2. **Update the addresses in the source code**:
-
-   Edit `central.c` and update the `L2CAP_SERVER_BLUETOOTH_ADDR`:
-   ```c
-   #define L2CAP_SERVER_BLUETOOTH_ADDR "XX:XX:XX:XX:XX:XX" // Your peripheral device address
-   ```
-
-   Edit `peripheral.c` if needed (usually runs on the same device for testing).
 
 #### Cryptographic Keys
 
@@ -245,15 +236,6 @@ cd build
 sudo ./bin/central "XX:XX:XX:XX:XX:XX" # Your peripheral address
 ```
 
-**Central Options**:
-- **No command-line options available** - the peripheral Bluetooth address is hardcoded in the source code
-
-**⚠️ IMPORTANT**: The central device uses a hardcoded Bluetooth address defined in `central.c`. You must edit the source code to change the target address:
-
-```c
-#define L2CAP_SERVER_BLUETOOTH_ADDR "XX:XX:XX:XX:XX:XX" // Your peripheral address
-```
-
 **Step 4: Establish Connection:**
 
 1. The peripheral device will start listening for connections
@@ -289,7 +271,7 @@ The central device can send commands to control the game:
 
 #### First Run Behavior
 - On the **first run** with CORE-V mode (`-c` or `--corev`), the system will:
-  1. Execute `ex_se05x_crypto` to establish NSCP (NXP Secure Connectivity Protocol) session
+  1. Execute `ex_se05x_crypto` to establish NSCP (New Secure Channel Protocol) session
   2. Generate and save randomness data to `corev_random.txt` file
   3. Use this saved randomness for the game
 
