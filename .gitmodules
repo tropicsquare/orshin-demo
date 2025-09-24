@@ -3,10 +3,10 @@
 	url = https://github.com/openhwgroup/core-v-mcu.git
 [submodule "orshin-sc-fpga/orshin-corev-secure-element"]
 	path = orshin-sc-fpga/orshin-corev-secure-element
-	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-corev-secure-element.git
+	url = https://github.com/ORSHIN/orshin-corev-secure-element.git
 [submodule "orshin-sc/orshin-rpi_scp03"]
 	path = orshin-sc/orshin-rpi_scp03
-	url = ssh://git@tropic-gitlab.corp.sldev.cz:7999/internal/orshin/orshin-rpi_scp03.git
+	url = https://github.com/ORSHIN/orshin-rpi_scp03.git
 [submodule "libtropic-util"]
 	path = tropic01-se/libtropic-util
 	url = https://github.com/tropicsquare/libtropic-util.git

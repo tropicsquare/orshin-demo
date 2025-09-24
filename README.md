@@ -2,7 +2,7 @@
 
 This repository contains the ORSHIN demonstrator platform integrating following ORSHIN deliverables and related assets:
   - [BB-protocols](https://github.com/sacca97/bb-sec-protocols)
-  - [New Secure Channel Protocol 03](https://doi.org/10.23919/DATE64628.2025.10992943)
+  - [New Secure Channel Protocol](https://doi.org/10.23919/DATE64628.2025.10992943)
   - [AttackDefense Framework (ADF)](https://doi.org/10.1145/3698396)
   - [TROPIC01 Secure Element](https://github.com/tropicsquare/tropic01)
 
@@ -13,7 +13,7 @@ This repository contains the ORSHIN demonstrator platform integrating following 
 flowchart LR
     A[RPi – Terminal<br/>Peripheral Device]
     A <-.->|encrypted BB| B[RPi<br/>Central Device]
-    B <-.->|Noise/NSCP03| C[TROPIC01 Secure Element<br/>OR<br/>CORE-V Emulated Secure Element]
+    B <-.->|Noise/NSCP| C[TROPIC01 Secure Element<br/>OR<br/>CORE-V Emulated Secure Element]
 
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -30,7 +30,7 @@ Wireless communication between the RPi devices is secured by the **BB-protocol**
 
 Two secure elements can be used interchangeably on the second RPi:
 - the TROPIC01 physical chip (as an RPi extension shield or a USB plug)
-- the RISC-V-emulated Secure Element implementing the **New Secure Channel Protocol 03** over I2C
+- the RISC-V-emulated Secure Element implementing the **New Secure Channel Protocol** over I2C
 
 ## Repository Structure
 
@@ -70,9 +70,8 @@ To enable TROPIC01 secure element, providing cryptografic functions in certain d
 Following examples are available for the ORSHIN demo:
 
   - [Secure Bluetooth L2CAP communication using the BB protocol with AEAD encryption](examples/BB-Communication_Example/)
-  - [A lightweight, secure implementation for Bluetooth communication with the TROPIC01 secure element.](examples/BB-TP01_Integration/)
-  - [Tetris Game with the TROPIC01 Secure Element](examples/Tetris_TP01/)
-  - [Tetris Game with selectable SE TP01/CORE-V](examples/Tetris_TP01_COREV/)
+  - [A lightweight, secure implementation for Bluetooth communication with the TROPIC01 secure element.](examples/BB-TROPIC01_Integration/)
+  - [Tetris Game with selectable SE TROPIC01/CORE-V](examples/Tetris_TROPIC01_COREV/)
 
 
 ## Demonstrator Threat Model
