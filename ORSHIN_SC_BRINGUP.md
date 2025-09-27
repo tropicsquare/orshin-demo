@@ -1,6 +1,6 @@
 # Secure Channel Bringup
 
-The [New Secure Channel Protocol](https://github.com/securitypattern/orshin-STM32-client-scp03-nscp) (NSCP) implementation runs on the RISC-V CPU, representing a Secure Element, emulated on the Nexys A7 FPGA.
+The [New Secure Channel Protocol](https://github.com/securitypattern/orshin-rpi_scp03) (NSCP) implementation runs on the RISC-V CPU, representing a Secure Element, emulated on the Nexys A7 FPGA.
 
 To bring up demo platform configurations involving the NSCP03, Nexys A7 must be configured properly.
 To communicate with the Secure Element from the RPi computer, the NSCP03 support must be enabled on the RPi side.

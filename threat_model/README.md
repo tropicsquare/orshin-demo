@@ -19,25 +19,25 @@ To demonstrate the wide range of threats covered by the compiled ADF database, w
 ## 2. Threats Enumeration
 
 In this phase, the attack surface is identified, leading to a list of potential vulnerabilities and threats.
-For this purpose, our [extended ADF](https://github.com/tropicsquare/orshin-adf/) is used to [visualize](https://tropicsquare.github.io/orshin-adf/) potential vulnerabilities related to the system model in a tree view and as a *threat catalogue*.
+For this purpose, our [extended ADF](https://github.com/ORSHIN/tropic-adf/) is used to [visualize](https://orshin.github.io/tropic-adf/) potential vulnerabilities related to the system model in a tree view and as a *threat catalogue*.
 
 The extended ADF approach enables simpler device modeling by following [MITRE EMB3D](https://emb3d.mitre.org) device properties while allowing extension by ADF, providing a more detailed attack surface view as a result.
 
 By combining ADF and MITRE EMB3D in this way, it is possible to achieve more efficient and detailed modeling — particularly in areas where [MITRE EMB3D](https://emb3d.mitre.org) lacks in-depth coverage.
-For constrained devices, we defined the AD databases based on ORSHIN expert catalogs available as a [generic catalog](https://github.com/tropicsquare/orshin-adf/tree/main/catalog-mitre).
+For constrained devices, we defined the AD databases based on ORSHIN expert catalogs available as a [generic catalog](https://github.com/ORSHIN/tropic-adf/tree/main/catalog-mitre).
 
-The source model files used to generate the [visualization](https://tropicsquare.github.io/orshin-adf/):
+The source model files used to generate the [visualization](https://orshin.github.io/tropic-adf/):
 
-  * [model_physical.yaml](https://github.com/tropicsquare/orshin-adf/tree/main/visualization/_data/model_physical.yaml)
-  * [model_software.yaml](https://github.com/tropicsquare/orshin-adf/tree/main/visualization/_data/model_software.yaml)
-  * [model_bt.yaml](https://github.com/tropicsquare/orshin-adf/tree/main/visualization/_data/model_bt.yaml)
+  * [model_physical.yaml](https://github.com/ORSHIN/tropic-adf/tree/main/visualization/_data/model_physical.yaml)
+  * [model_software.yaml](https://github.com/ORSHIN/tropic-adf/tree/main/visualization/_data/model_software.yaml)
+  * [model_bt.yaml](https://github.com/ORSHIN/tropic-adf/tree/main/visualization/_data/model_bt.yaml)
 
 ## 3. Threats Ranking
 
-For threat scoring, the programmatic approach presented in the original [ADF Usage Example to TM a Cryptowallet blog post](https://github.com/tropicsquare/orshin-adf/blob/main/blogpost.md) can be employed.
+For threat scoring, the programmatic approach presented in the original [ADF Usage Example to TM a Cryptowallet blog post](https://github.com/ORSHIN/tropic-adf/blob/main/blogpost.md) can be employed.
 The disadvantage of the programmatic approach is that the risk assessment depends strongly on the quality and size of the underlying AD database.
 
-The [extended](https://tropicsquare.github.io/orshin-adf/) approach brings the standard tabular view of the *threats catalogue*, helping in semi-manual risk assessment, as it connects the ADF-based threat model with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/) databases, supporting the view of the *Risk score*, typically the *CVSS value*. The extraction of missing score values is supported by linkage with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/) databases, providing a wider range of data supporting *Risk score* determination.
+The [extended](https://orshin.github.io/tropic-adf/) approach brings the standard tabular view of the *threats catalogue*, helping in semi-manual risk assessment, as it connects the ADF-based threat model with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/) databases, supporting the view of the *Risk score*, typically the *CVSS value*. The extraction of missing score values is supported by linkage with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/) databases, providing a wider range of data supporting *Risk score* determination.
 
 Both approaches can also be used to enumerate available threats and defenses, while the difference is in:
   * pure textual vs. webpage-based tabular presentation conventional in the field of risk analysis,
@@ -49,4 +49,4 @@ Note that both approaches use the same underlying database and thus can be combi
 
 A detailed defense strategy is not relevant for the demonstrator; however:
   - [BB-protocols](https://github.com/sacca97/bb-sec-protocols) addresses the vast majority of the enumerated Bluetooth protocol threats
-  - [New Secure Channel Protocol](https://github.com/securitypattern/orshin-STM32-client-scp03-nscp) addresses the vast majority of the enumerated SCP03 protocol threats
+  - [New Secure Channel Protocol](https://github.com/securitypattern/orshin-rpi_scp03) addresses the vast majority of the enumerated SCP03 protocol threats

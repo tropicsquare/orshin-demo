@@ -83,7 +83,7 @@ The AttackDefense Framework (ADF) is used to model threats to a device in the fo
   3. Threat Ranking
   4. Defense Strategy
 
-For the Demonstrator Platform model, we use the [extended](https://tropicsquare.github.io/orshin-adf/) approach, interconnecting the ADF-based threat model with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/), where MITRE EMB3D serves for threat model definition using *Device Properties* (PID), and ADF improves the detail of the model by providing a wide, custom set of threats.
+For the Demonstrator Platform model, we use the [extended](https://orshin.github.io/tropic-adf/) approach, interconnecting the ADF-based threat model with [MITRE EMB3D](https://emb3d.mitre.org) and [MITRE CVE](https://www.cve.org/), where MITRE EMB3D serves for threat model definition using *Device Properties* (PID), and ADF improves the detail of the model by providing a wide, custom set of threats.
 
 For details, see the [Threat Model](threat_model/) of the demonstrator, including coverage of the four phases mentioned above.
 

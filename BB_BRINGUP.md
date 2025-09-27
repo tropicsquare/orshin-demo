@@ -1,6 +1,6 @@
 # BB-Protocols - Complete Workflow Guide
 
-This document provides a workflow for running the bb-protocols on RPi/Linux, including the pairing process that was missing in the original [README](https://github.com/sacca97/bb-protocols/tree/main/bb-portable).
+This document provides a workflow for running the bb-protocols on RPi/Linux, including the pairing process that was missing in the original [README](https://github.com/sacca97/bb-sec-protocols).
 
 ## Overview
 
